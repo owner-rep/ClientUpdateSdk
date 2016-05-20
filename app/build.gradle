@@ -1,0 +1,26 @@
+apply plugin: 'com.android.model.application'
+
+// Root of 3rd party lib(s): location could be anywhere on the host system
+model {
+    android {
+        compileSdkVersion = 23
+        buildToolsVersion = '23.0.2'
+
+        defaultConfig {
+            minSdkVersion.apiLevel = 14
+            targetSdkVersion.apiLevel = 23
+            versionCode = 1
+            versionName = '1.0'
+        }
+
+        ndk {
+            moduleName = 'hello-libs'
+            platformVersion = 9
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:23.3.0'
+}
