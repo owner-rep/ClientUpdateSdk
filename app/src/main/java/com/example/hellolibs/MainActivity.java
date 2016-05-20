@@ -45,12 +45,13 @@ public class MainActivity extends AppCompatActivity {
                 String newFile = base + "bsdiff/new.apk";
                 String patchFile = base + "bsdiff/patch.apk";
                 int ret = BSUtil.bspatch(oldFile, newFile, patchFile);
-                return String.valueOf(ret);
+                String md5 = BSUtil.md5sum(newFile);
+                return String.valueOf("md5:" + md5 + "\nsize:" + ret);
             }
 
             @Override
             protected void onPostExecute(String s) {
-                
+
                 Toast.makeText(MainActivity.this, "合并完成，状态码：" + s, Toast.LENGTH_LONG).show();
             }
         }.execute("");
