@@ -214,7 +214,7 @@ static int main(int argc, const char *argv[]) {
 JNIEXPORT jint JNICALL Java_com_uddream_bs_BSUtil_bspatch(JNIEnv *env,
                                                           jobject obj, jstring old, jstring new,
                                                           jstring patch) {
-    char *argv[4];
+    const char *argv[4];
     argv[0] = "bspatch";
     argv[1] = (*env)->GetStringUTFChars(env, old, 0);
     argv[2] = (*env)->GetStringUTFChars(env, new, 0);
