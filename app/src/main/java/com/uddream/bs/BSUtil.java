@@ -42,6 +42,6 @@ public class BSUtil {
     }
 
     static {
-        System.loadLibrary("hello-libs");
+        System.loadLibrary("patch");
     }
 }

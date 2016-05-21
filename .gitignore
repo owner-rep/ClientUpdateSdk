@@ -7,3 +7,5 @@
 /app/build
 /app/src/main/libs
 /app/src/main/obj
+/app/src/main/java/patch.jar
+/app/src/main/java/com/uddream/bs/BSUtil.class
