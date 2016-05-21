@@ -94,8 +94,9 @@ JNIEXPORT jint JNICALL Java_com_uddream_bs_BSUtil_bspatch(JNIEnv *env,
 }
 ```
 - 执行ndk-build将生成的so文件导入工程
-- 编写测试java类，命名为BSUtil.java，调用该jni接口即可，为方便工程使用，需要将此java文件打包成jar包，方便后期使用，打包命令：`jar cvf  patch.jar com\uddream\bs\BSUtil.java`
-- 注意：必须建立好java包路径，否则生成的jar包有问题
+- 编写测试java类，命名为BSUtil.java，调用该jni接口即可，为方便工程使用，需要将此java文件打包成jar包，方便后期使用，打包命令(在com文件夹所在目录执行命令，必须建立包名目录结构，否则打出jar包无法使用)：
+`javac com\uddream\bs\BSUtil.java`
+`jar cvf  patch.jar com\uddream\bs\BSUtil.class`
 ```
 package com.uddream.bs;
 
