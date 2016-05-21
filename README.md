@@ -110,4 +110,4 @@ public class BSUtil {
     }
 }
 ```
-- 将so文件和jar包文件导入工程，调用jar包方法即可，编译好的文件下载地址：[源码+编译好so和jar文件](http://static.blog.uddream.cn/bspatch.rar)
+- 将so文件和jar包文件导入工程，调用jar包方法即可.
