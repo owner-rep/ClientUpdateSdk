@@ -1,6 +1,6 @@
 ### 系统结构
 自动更新系统的示意图如下：
-![](http://static.blog.uddream.cn/update_zengliang_introduce.jpg)
+![](http://blog.qiniu.uddream.cn/update_zengliang_introduce.jpg)
 图中手机代表客户端。服务端的各个模块描述如下：
 - WebConsole:提供上传更新包的网站操作界面。
 - FS：文件系统，存储apk文件和增量更新包，增量更新的原理后文会提到。
@@ -15,7 +15,7 @@
 
 ### 服务端处理流程
 流程图如下：
-![](http://static.blog.uddream.cn/update_zengliang_flow.png)
+![](http://blog.qiniu.uddream.cn/update_zengliang_flow.png)
 1. 客户端发送请求至服务端，请求内容除了必要的验证信息以外，最重要的信息就是version_code，或者类似的用于比较版本号以判断是否需要升级的字段信息。
 2. 服务端接收到请求后，验证请求的有效性。
 3. 若请求有效，则对比请求中的version_code是否是最新的。
@@ -40,7 +40,7 @@
 ### 增量升级技术方案
 #### 服务端生成增量包
 工具下载：[bsdiff和 bspatch](http://www.daemonology.net/bsdiff/)
-[备用下载地址](http://static.blog.uddream.cn/bsdiff-4.3.tar.gz)
+[备用下载地址](http://blog.qiniu.uddream.cn/bsdiff-4.3.tar.gz)
 服务端操作系统：centos6.5，理论上上只要是linux都可以，安装步骤：
 1. 解压bsdiff-4.3.tar.gz压缩包，`tar zxvf bsdiff-4.3.tar.gz`
 2. 进入解压目录，修改Makefile，倒数第一行和倒数第三行 加TAB
@@ -51,7 +51,7 @@
 7. 进行md5值校验，使用命令md5sum file-name.apk
 
 #### 客户端合并增量包
-在客户端合并增量文件，需要使用上述工具包，因此我们需要将上述的bsdiff源码编译成so文件，供客户端调用，在编译so文件时，需要依赖bzip2库，下载地址：[bzip2](http://www.bzip.org/downloads.html)，备用下载地址：[bzip2-download](http://static.blog.uddream.cn/bzip2-1.0.6.tar.gz)
+在客户端合并增量文件，需要使用上述工具包，因此我们需要将上述的bsdiff源码编译成so文件，供客户端调用，在编译so文件时，需要依赖bzip2库，下载地址：[bzip2](http://www.bzip.org/downloads.html)，备用下载地址：[bzip2-download](http://blog.qiniu.uddream.cn/bzip2-1.0.6.tar.gz)
 - 将bsdiff-4.3.tar.gz和bzip.tar.gz的源码文件解压到同一个目录下，目录名为jni
 - 在jni目录下，编写Android.mk和Application.mk文件
 
@@ -99,10 +99,8 @@ JNIEXPORT jint JNICALL Java_com_uddream_bs_BSUtil_bspatch(JNIEnv *env,
 `jar cvf  patch.jar com\uddream\bs\BSUtil.class`
 ```
 package com.uddream.bs;
-
 public class BSUtil {
     public static native int bsdiff(String oldFile, String newFile, String path);
-
     public static native int bspatch(String oldFile, String newFile, String path);
 
     static {
@@ -110,4 +108,6 @@ public class BSUtil {
     }
 }
 ```
-- 将so文件和jar包文件导入工程，调用jar包方法即可.
+- 将so文件和jar包文件导入工程，调用jar包方法即可。
+
+> GitHub地址：https://github.com/share-sdk/ClientUpdateSdk
